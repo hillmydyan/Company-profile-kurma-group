@@ -57,7 +57,8 @@ class JobResource extends Resource
                     ->schema([
                         Forms\Components\RichEditor::make('description')
                             ->required()
-                            ->columnSpanFull(),
+                            ->columnSpanFull()
+                            ->extraAttributes(['style' => 'min-height: 250px;']),
                         Forms\Components\TagsInput::make('requirements')
                             ->nullable(),
                         Forms\Components\TagsInput::make('benefits')
