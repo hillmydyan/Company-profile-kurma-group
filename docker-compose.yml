@@ -53,6 +53,7 @@ services:
       - APP_ENV=production
       - APP_DEBUG=false
       - APP_URL=https://admin.kurmagroup.com
+      - APP_KEY=base64:HSK3TC6ffvQhgpx8/3/ve3Q8EQGi3ZIViGwxYCa0rww=
       - DB_CONNECTION=pgsql
       - DB_HOST=postgres_db
       - DB_PORT=5432
