@@ -10,8 +10,8 @@ services:
       dockerfile: Dockerfile
       args:
         # PENTING: Ubah URL ini menjadi URL asli domain backend Anda (opsi B)
-        # Contoh: https://api.kurmagroup.com/api
-        - VITE_API_URL=http://api.kurmagroup.local/api
+        # Contoh: https://admin.kurmagroup.com/api
+        - VITE_API_URL=https://admin.kurmagroup.com/api
     ports:
       # Jika landing page lama menggunakan port 4321, 
       # kita gunakan port yang sama agar langsung menggantikan yang lama
@@ -52,7 +52,7 @@ services:
     environment:
       - APP_ENV=production
       - APP_DEBUG=false
-      - APP_URL=http://api.kurmagroup.local
+      - APP_URL=https://admin.kurmagroup.com
       - DB_CONNECTION=pgsql
       - DB_HOST=postgres_db
       - DB_PORT=5432
