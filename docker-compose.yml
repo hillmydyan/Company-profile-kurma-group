@@ -77,8 +77,6 @@ services:
       POSTGRES_PASSWORD: kurma_secure_pass_123!
     volumes:
       - pgdata:/var/lib/postgresql/data
-    ports:
-      - "5432:5432" # Opsional, hapus jika tidak ingin terekspos keluar
     restart: unless-stopped
     networks:
       - kurma_network
