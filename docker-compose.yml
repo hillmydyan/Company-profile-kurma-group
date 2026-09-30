@@ -1,0 +1,92 @@
+version: '3.8'
+
+services:
+  # -----------------------------------------------------
+  # 1. FRONTEND: React SPA (Nginx)
+  # -----------------------------------------------------
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        # PENTING: Ubah URL ini menjadi URL asli domain backend Anda (opsi B)
+        # Contoh: https://api.kurmagroup.com/api
+        - VITE_API_URL=http://api.kurmagroup.local/api
+    ports:
+      # Jika landing page lama menggunakan port 4321, 
+      # kita gunakan port yang sama agar langsung menggantikan yang lama
+      - "4321:80" 
+    restart: unless-stopped
+    networks:
+      - kurma_network
+
+  # -----------------------------------------------------
+  # 2. BACKEND WEB: Nginx Server untuk Laravel
+  # -----------------------------------------------------
+  backend_web:
+    image: nginx:alpine
+    ports:
+      # Ubah 8082 jika port ini sudah dipakai aplikasi lain di VPS Anda
+      - "8082:80" 
+    volumes:
+      # Mount kode laravel agar Nginx bisa menyajikan file statis (public/)
+      - ./backend:/var/www
+      # Konfigurasi Nginx untuk PHP-FPM
+      - ./backend/docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - backend_app
+    restart: unless-stopped
+    networks:
+      - kurma_network
+
+  # -----------------------------------------------------
+  # 3. BACKEND APP: PHP-FPM (Laravel Application)
+  # -----------------------------------------------------
+  backend_app:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      # Mount folder storage agar upload CV tersimpan permanen di host
+      - ./backend/storage:/var/www/storage
+    environment:
+      - APP_ENV=production
+      - APP_DEBUG=false
+      - APP_URL=http://api.kurmagroup.local
+      - DB_CONNECTION=pgsql
+      - DB_HOST=postgres_db
+      - DB_PORT=5432
+      - DB_DATABASE=kurma_production
+      - DB_USERNAME=kurma_user
+      - DB_PASSWORD=kurma_secure_pass_123!
+      - LOG_CHANNEL=stderr
+    depends_on:
+      - postgres_db
+    restart: unless-stopped
+    networks:
+      - kurma_network
+
+  # -----------------------------------------------------
+  # 4. DATABASE: PostgreSQL 15
+  # -----------------------------------------------------
+  postgres_db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: kurma_production
+      POSTGRES_USER: kurma_user
+      POSTGRES_PASSWORD: kurma_secure_pass_123!
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432" # Opsional, hapus jika tidak ingin terekspos keluar
+    restart: unless-stopped
+    networks:
+      - kurma_network
+
+volumes:
+  pgdata:
+    driver: local
+
+networks:
+  kurma_network:
+    driver: bridge
