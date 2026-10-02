@@ -133,7 +133,7 @@
                 @endif
             @endif
             @class([
-                'fi-modal-close-overlay fixed inset-0 bg-gray-950/50 dark:bg-gray-950/75',
+                'fi-modal-close-overlay fixed inset-0 z-0 bg-gray-950/50 dark:bg-gray-950/75',
                 'cursor-pointer' => $closeByClickingAway,
             ])
         ></div>
@@ -142,7 +142,7 @@
             x-ref="modalContainer"
             {{
                 $attributes->class([
-                    'pointer-events-none relative max-h-full w-full transition',
+                    'pointer-events-none relative z-10 max-h-full w-full transition',
                     'my-auto overflow-y-auto p-4' => ! ($slideOver || ($width === MaxWidth::Screen)),
                 ])
             }}
