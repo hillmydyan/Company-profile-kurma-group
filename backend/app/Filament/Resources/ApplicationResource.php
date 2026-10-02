@@ -137,7 +137,8 @@ class ApplicationResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->requiresConfirmation(false),
                 Tables\Actions\Action::make('download_cv')
                     ->label('Unduh CV')
                     ->icon('heroicon-o-arrow-down-tray')
@@ -148,7 +149,7 @@ class ApplicationResource extends Resource
                     ->label('Hapus CV')
                     ->icon('heroicon-o-trash')
                     ->color('danger')
-                    ->requiresConfirmation()
+                    ->requiresConfirmation(false)
                     ->visible(fn ($record) => $record->cv_path !== null)
                     ->action(function ($record) {
                         if ($record->cv_path) {
