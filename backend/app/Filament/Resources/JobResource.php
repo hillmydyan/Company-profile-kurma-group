@@ -92,20 +92,9 @@ class JobResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\Action::make('delete')
-                    ->label('Hapus')
-                    ->icon('heroicon-o-trash')
-                    ->color('danger')
-                    ->action(function ($record, $livewire) {
-                        $record->delete();
-                        $livewire->js("window.dispatchEvent(new CustomEvent('close-all-modals'))");
-                    })
-                    ->successNotificationTitle('Lowongan berhasil dihapus'),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                //
             ]);
     }
 
