@@ -182,7 +182,6 @@
                     // to ensure compatibility with custom themes that may use an older version of Tailwind CSS.
                     'h-[100dvh]' => $slideOver || ($width === MaxWidth::Screen),
                     'mx-auto rounded-xl' => ! ($slideOver || ($width === MaxWidth::Screen)),
-                    'hidden' => ! $visible,
                     match ($width) {
                         MaxWidth::ExtraSmall => 'max-w-xs',
                         MaxWidth::Small => 'max-w-sm',
