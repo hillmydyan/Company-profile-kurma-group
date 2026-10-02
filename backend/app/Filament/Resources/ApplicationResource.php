@@ -137,7 +137,18 @@ class ApplicationResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\Action::make('delete')
+                    ->label('Hapus')
+                    ->icon('heroicon-o-trash')
+                    ->color('danger')
+                    ->action(function ($record) {
+                        // Hapus CV jika ada
+                        if ($record->cv_path) {
+                            \Illuminate\Support\Facades\Storage::disk('private')->delete($record->cv_path);
+                        }
+                        $record->delete();
+                    })
+                    ->successNotificationTitle('Pelamar berhasil dihapus'),
                 Tables\Actions\Action::make('download_cv')
                     ->label('Unduh CV')
                     ->icon('heroicon-o-arrow-down-tray')
