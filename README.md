@@ -8,7 +8,7 @@ Repositori *monorepo* resmi untuk Website Company Profile dan Portal Karier **Ku
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 ### Frontend
 - **Framework**: React 18 + Vite
@@ -25,7 +25,7 @@ Repositori *monorepo* resmi untuk Website Company Profile dan Portal Karier **Ku
 
 ---
 
-## 🚀 Panduan Instalasi Lokal (Development)
+## Panduan Instalasi Lokal (Development)
 
 Jika Anda ingin menjalankan atau memodifikasi kode di komputer lokal Anda:
 
@@ -63,7 +63,7 @@ php artisan serve
 
 ---
 
-## 🐳 Panduan Deployment (Production di VPS)
+##  Panduan Deployment (Production di VPS)
 
 Sistem ini didesain untuk berjalan secara stabil di VPS menggunakan **Docker** dan diamankan di balik **Cloudflare Tunnels**.
 
@@ -98,7 +98,7 @@ docker compose exec backend_app chmod -R 775 /var/www/storage
 
 ---
 
-## 🌐 Konfigurasi Cloudflare Tunnels (Zero Trust)
+##  Konfigurasi Cloudflare Tunnels (Zero Trust)
 
 Sistem ini mengekspos dua _port_ melalui Docker, yang harus dirutekan menggunakan Cloudflare Tunnels:
 

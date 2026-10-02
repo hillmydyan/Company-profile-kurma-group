@@ -137,6 +137,7 @@ class ApplicationResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
                 Tables\Actions\Action::make('download_cv')
                     ->label('Unduh CV')
                     ->icon('heroicon-o-arrow-down-tray')
