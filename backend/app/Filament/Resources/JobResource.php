@@ -98,7 +98,7 @@ class JobResource extends Resource
                     ->color('danger')
                     ->action(function ($record, $livewire) {
                         $record->delete();
-                        $livewire->dispatch('close-all-modals');
+                        $livewire->js("window.dispatchEvent(new CustomEvent('close-all-modals'))");
                     })
                     ->successNotificationTitle('Lowongan berhasil dihapus'),
             ])
