@@ -49,6 +49,8 @@ services:
     volumes:
       # Mount folder storage agar upload CV tersimpan permanen di host
       - ./backend/storage:/var/www/storage
+      # Mount folder public agar aset Filament yang di-publish bisa diakses Nginx
+      - ./backend/public:/var/www/public
     environment:
       - APP_ENV=production
       - APP_DEBUG=false
