@@ -147,7 +147,7 @@ class ApplicationResource extends Resource
                             \Illuminate\Support\Facades\Storage::disk('private')->delete($record->cv_path);
                         }
                         $record->delete();
-                        $livewire->dispatch('close-all-modals');
+                        $livewire->js("window.dispatchEvent(new CustomEvent('close-all-modals'))");
                     })
                     ->successNotificationTitle('Pelamar berhasil dihapus'),
                 Tables\Actions\Action::make('download_cv')
