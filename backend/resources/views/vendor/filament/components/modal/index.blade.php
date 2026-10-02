@@ -139,7 +139,6 @@
         ></div>
 
         <div
-            x-cloak
             x-ref="modalContainer"
             {{
                 $attributes->class([
@@ -149,7 +148,6 @@
             }}
         >
             <div
-                x-cloak
                 x-data="{ isShown: false }"
                 x-init="
                     $nextTick(() => {
