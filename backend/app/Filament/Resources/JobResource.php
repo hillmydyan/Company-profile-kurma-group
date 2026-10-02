@@ -96,8 +96,9 @@ class JobResource extends Resource
                     ->label('Hapus')
                     ->icon('heroicon-o-trash')
                     ->color('danger')
-                    ->action(function ($record) {
+                    ->action(function ($record, $livewire) {
                         $record->delete();
+                        $livewire->dispatch('close-all-modals');
                     })
                     ->successNotificationTitle('Lowongan berhasil dihapus'),
             ])

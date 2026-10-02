@@ -141,12 +141,13 @@ class ApplicationResource extends Resource
                     ->label('Hapus')
                     ->icon('heroicon-o-trash')
                     ->color('danger')
-                    ->action(function ($record) {
+                    ->action(function ($record, $livewire) {
                         // Hapus CV jika ada
                         if ($record->cv_path) {
                             \Illuminate\Support\Facades\Storage::disk('private')->delete($record->cv_path);
                         }
                         $record->delete();
+                        $livewire->dispatch('close-all-modals');
                     })
                     ->successNotificationTitle('Pelamar berhasil dihapus'),
                 Tables\Actions\Action::make('download_cv')
@@ -159,7 +160,7 @@ class ApplicationResource extends Resource
                     ->label('Hapus CV')
                     ->icon('heroicon-o-trash')
                     ->color('danger')
-                    ->requiresConfirmation()
+                    ->requiresConfirmation(false)
                     ->visible(fn ($record) => $record->cv_path !== null)
                     ->action(function ($record) {
                         if ($record->cv_path) {
