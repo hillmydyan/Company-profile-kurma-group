@@ -113,20 +113,6 @@
             'flex items-center' => ! $slideOver,
         ])
     >
-        <div
-            aria-hidden="true"
-            @if ($closeByClickingAway)
-                @if (filled($id))
-                    x-on:click="$dispatch('{{ $closeEventName }}', { id: '{{ $id }}' })"
-                @else
-                    x-on:click="close()"
-                @endif
-            @endif
-            @class([
-                'fi-modal-close-overlay fixed inset-0 bg-gray-950/50 dark:bg-gray-950/75',
-                'cursor-pointer' => $closeByClickingAway,
-            ])
-        ></div>
 
         <div
             x-cloak
