@@ -137,19 +137,6 @@ class ApplicationResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\Action::make('delete')
-                    ->label('Hapus')
-                    ->icon('heroicon-o-trash')
-                    ->color('danger')
-                    ->action(function ($record, $livewire) {
-                        // Hapus CV jika ada
-                        if ($record->cv_path) {
-                            \Illuminate\Support\Facades\Storage::disk('private')->delete($record->cv_path);
-                        }
-                        $record->delete();
-                        $livewire->js("window.dispatchEvent(new CustomEvent('close-all-modals'))");
-                    })
-                    ->successNotificationTitle('Pelamar berhasil dihapus'),
                 Tables\Actions\Action::make('download_cv')
                     ->label('Unduh CV')
                     ->icon('heroicon-o-arrow-down-tray')
