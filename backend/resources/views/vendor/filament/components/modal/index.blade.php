@@ -83,6 +83,7 @@
     @if ($id)
         x-on:{{ $closeEventName }}.window="if ($event.detail.id === '{{ $id }}') close()"
         x-on:{{ $openEventName }}.window="if ($event.detail.id === '{{ $id }}') open()"
+        x-on:close-all-modals.window="isOpen = false"
     @endif
     x-trap.noscroll="isOpen"
     x-bind:class="{
